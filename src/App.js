@@ -54,7 +54,7 @@ class Calendar extends Component {
     if(previous) updatedWeek -= 6;
     else updatedWeek += 6;
     if(updatedWeek < 0) updatedWeek = 0;
-    if(updatedWeek >= this.calData.length) updatedWeek = this.calData.length - 7;
+    if(updatedWeek >= this.calData.length-7) updatedWeek = this.calData.length-7;
     this.setState({week: updatedWeek});
   }
   
