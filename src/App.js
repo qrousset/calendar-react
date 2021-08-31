@@ -18,19 +18,35 @@ class Calendar extends Component {
     this.nextWeek = this.nextWeek.bind(this);
   }
 
-  async componentDidMount() {
+  // async componentDidMount() {
+  //   //fetch calendar data
+  //   const response = await fetch(this.url);
+  //   const data = await response.json();
+  //   const preData = [];
+  //   for (const key in data) {
+  //     preData.push(data[key]);
+  //     // console.log(data[key]);
+  //   }
+  //   for (let index = 1; index < preData.length; index++) {
+  //     this.calData.push(preData[index]);
+  //   }
+  //   this.setState({ loading: false });
+  // }
+
+  componentDidMount() {
     //fetch calendar data
-    const response = await fetch(this.url);
-    const data = await response.json();
     const preData = [];
-    for (const key in data) {
-      preData.push(data[key]);
-      // console.log(data[key]);
-    }
-    for (let index = 1; index < preData.length; index++) {
-      this.calData.push(preData[index]);
-    }
-    this.setState({ loading: false });
+    fetch(this.url)
+      .then(data => data.json())
+      .then(data => {
+        for (const key in data) {
+          preData.push(data[key]);
+        // console.log(data[key]);
+        }
+        for (let index = 1; index < preData.length; index++) {
+          this.calData.push(preData[index]);
+        }
+        this.setState({ loading: false })});
   }
 
   moveWeeks(previous){
